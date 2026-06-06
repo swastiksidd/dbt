@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: bronze_date #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: view
+
+  - name: bronze_sales
+    columns:
+      - name: sales_id
+        data_tests:
+          - not_null # generic tests
+          - unique   # generic tests
+      - name: gross_amount
+        data_tests:
+          - generic_non_negative_chk #custom generic test
+      - name: discount_amount
+        data_tests:
+          - generic_non_negative_chk  #custom generic test
+      - name: net_amount
+        data_tests:
+          - generic_non_negative_chk #custom generic test
+      
+
+  - name: bronze_store
+    columns:
+      - name: store_sk
+        data_tests:
+          - not_null # generic tests # data test
+          - unique   # generic tests # data test
+      - name: country
+        data_tests:
+          - accepted_values: #generic tests # data test
+              name: bronze_store_valid_country
+              description: "This will check if stores are located in Canada or USA."
+              values: ['USA','Canada']
+              config:
+                severity: warn # in case of failure just throw warning rather than failure.

@@ -1,0 +1,11 @@
+sources:
+  - name: dbt_sch
+    database: dbt_db  
+    schema: dbt_sch  
+    tables:
+      - name: fact_sales
+      - name: fact_returns
+      - name: dim_store
+      - name: dim_product
+      - name: dim_date
+      - name: dim_customer
