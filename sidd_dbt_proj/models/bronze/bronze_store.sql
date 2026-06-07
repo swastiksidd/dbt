@@ -1,1 +1,1 @@
-select * from {{ source('dbt_sch','dim_store') }}
+{{ create_bronze_tbl_ts('dim_store', 'dbt_sch') }}

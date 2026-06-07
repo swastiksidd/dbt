@@ -36,6 +36,14 @@ models:
       +materialized: table
       schema: bronze
 
+    silver:
+      +materialized: table
+      schema: silver
+
+    gold:
+      +materialized: table
+      schema: gold
+      
 seeds:
   sidd_dbt_proj:
     +schema: bronze
